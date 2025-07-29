@@ -1,0 +1,26 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Tenant;
+use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class TenantSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Tenant::factory()->count(5)->create();
+        User::factory()->count(2)->create();
+        // Add one fixed tenant for testing
+        Tenant::create([
+            'name' => 'School One',
+            'subdomain' => 'school1',
+            'email' => 'xyz@school1.com'
+        ]);
+    }
+}
