@@ -15,12 +15,12 @@ class TenantSeeder extends Seeder
     public function run(): void
     {
         Tenant::factory()->count(5)->create();
-        User::factory()->count(2)->create();
         // Add one fixed tenant for testing
         Tenant::create([
             'name' => 'School One',
             'subdomain' => 'school1',
             'email' => 'xyz@school1.com'
         ]);
+        User::factory()->count(2)->create();
     }
 }

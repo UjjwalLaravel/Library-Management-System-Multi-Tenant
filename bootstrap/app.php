@@ -14,6 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->prepend(
             \App\Http\Middleware\IdentifyTenant::class,
         );
+        $middleware->alias([
+            'tenant.admin' => \App\Http\Middleware\EnsureUserIsTenantAdmin::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

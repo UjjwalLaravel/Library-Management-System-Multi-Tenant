@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Tenant\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,7 +10,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-    return 'Hello, you are logged in. Tenant: ' . (app('tenant')->name ?? 'no tenant');
+    // return 'Hello, you are logged in. Tenant: ' . (app('tenant')->name ?? 'no tenant');
     // return 'Logged in! Tenant: ' . app('tenant')->name;
 })->middleware(['auth'])->name('dashboard');
 
@@ -17,6 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Tenant Admin Routes
+Route::middleware(['auth', 'tenant.admin'])->prefix('admin')->name('tenant.admin.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 require __DIR__ . '/auth.php';
