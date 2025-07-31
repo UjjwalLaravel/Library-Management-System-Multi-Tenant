@@ -5,7 +5,14 @@
             class="block px-6 py-3 hover:bg-blue-100 {{ request()->is('admin/dashboard') ? 'bg-blue-100 font-semibold' : '' }}">
             🏠 Dashboard
         </a>
-        <a href="#" class="block px-6 py-3 hover:bg-blue-100">📘 Books</a>
+        <a href="{{ route('tenant.admin.books.index') }}"
+            class="block px-6 py-3 hover:bg-blue-100 {{ request()->is('admin/books*') ? 'bg-blue-100 font-semibold' : '' }}">
+            📘 Books
+        </a>
+        <a href="{{ route('tenant.admin.authors.index') }}"
+            class="block px-6 py-3 hover:bg-blue-100 {{ request()->is('admin/authors*') ? 'bg-blue-100 font-semibold' : '' }}">
+            🖊️ Authors
+        </a>
         <a href="#" class="block px-6 py-3 hover:bg-blue-100">👨‍🎓 Students</a>
         <a href="#" class="block px-6 py-3 hover:bg-blue-100">🧑‍🏫 Librarians</a>
         <a href="#" class="block px-6 py-3 hover:bg-blue-100">📊 Reports</a>

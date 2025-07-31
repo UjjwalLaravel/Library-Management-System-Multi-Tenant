@@ -5,14 +5,19 @@ namespace App\Models;
 class Book extends TenantScopedModel
 {
     protected $fillable = [
+        'tenant_id',
         'title',
-        'author',
+        'author_id',
         'isbn',
         'publisher',
         'year',
         'quantity',
         'shelf_location',
         'status',
-        'tenant_id'
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
 }

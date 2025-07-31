@@ -20,9 +20,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Tenant Admin Routes
-Route::middleware(['auth', 'tenant.admin'])->prefix('admin')->name('tenant.admin.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
-
 require __DIR__ . '/auth.php';
+require __DIR__ . '/tenant.php';
